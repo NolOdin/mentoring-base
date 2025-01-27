@@ -1,6 +1,6 @@
-<div class="user-card-item">
+<div class="user-card-item" appElShadow>
   <div class="user-card-item-content">
-    <h1>{{ user.name | uppercase }}</h1>
+    <h1 appRedDirective>{{ user.name | uppercase }}</h1>
     <h2>{{ user.email | customUpperCase }}</h2>
     <h3 style="padding-top: 50px; box-sizing: border-box">
       {{ user.website }}
@@ -20,6 +20,7 @@
     type="button"
     class="card-item-self-delete-button"
     (click)="openEditDialog()"
+    appElTooltip="Редактировать данные пользователя"
   >
     Редактировать
   </button>

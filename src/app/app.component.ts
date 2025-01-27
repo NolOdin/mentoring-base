@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { YelBackgroundDirective } from './directives/yel-background.directive';
 
 
 const navNamingFunc = (name: string) => {
@@ -19,7 +20,7 @@ const navNamingFunc = (name: string) => {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor, RouterLink],
+  imports: [RouterOutlet, NgFor, RouterLink, YelBackgroundDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
