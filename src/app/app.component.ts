@@ -1,7 +1,10 @@
-import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { YelBackgroundDirective } from './directives/yel-background.directive';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthComponent } from './auth/auth.component';
+import { UserService } from './services/user.service';
 
 
 const navNamingFunc = (name: string) => {
@@ -20,7 +23,7 @@ const navNamingFunc = (name: string) => {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor, RouterLink, YelBackgroundDirective],
+  imports: [RouterOutlet, NgFor, RouterLink, YelBackgroundDirective, AsyncPipe, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -30,7 +33,30 @@ const navNamingFunc = (name: string) => {
 export class AppComponent {
   title = 'mentoring-first-project';
   
+ public readonly dialog = inject(MatDialog);
+  public readonly userServ = inject(UserService)
 
+ public openAuthDialog(): void {
+    const dialogRef = this.dialog.open(AuthComponent, {});
+
+    dialogRef.afterClosed().subscribe((res: string) => {
+      //console.log(res)
+      if(res === 'admin') {
+        this.userServ.loginAsAdmin()
+      } else if (res === 'user') {
+        this.userServ.loginAsUser()
+      } else {
+        return undefined
+      }
+    });
+  }
+  public logout () {
+    if(confirm('Вы точно хотите выйти ?')) {
+      return this.userServ.logout()
+    }else {
+      return false
+    }
+  }
   
 
   isUpperCase = true;
@@ -54,6 +80,7 @@ export class AppComponent {
   headerItem3 = 'Каталог';
   headerItem4 = 'Пользователи';
   headerItem5 = 'Тудушки';
+  headerItem6 = 'Админка';
 
   secondHeaderItem1 = 'Стройматериалы';
   secondHeaderItem2 = 'Инструменты';

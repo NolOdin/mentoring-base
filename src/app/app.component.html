@@ -10,6 +10,7 @@
         <div class="header-nav-item">{{headerItem3}}</div>
         <div class="header-nav-item" routerLink="/users">{{headerItem4}}</div>
         <div class="header-nav-item" routerLink="/todos">{{headerItem5}}</div>
+        <div class="header-nav-item" routerLink="/admin">{{headerItem6}}</div>
       </nav>
     </div>
     <div class="header-right">
@@ -27,6 +28,10 @@
           />
           <a>Пусто</a>
         </button>
+        <div>
+          <button class="auth-button" (click)="openAuthDialog()" style="color: #f0ba4e; margin-left: 20px;" *ngIf="(userServ.user$ | async) === null">Войти</button>
+          <button class="auth-button" (click)="logout()"  *ngIf="(userServ.user$ | async) !== null">Выйти</button>
+        </div>
       </div>
     </div>
   </div>
