@@ -6,18 +6,13 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { UsersService } from '../services/users.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
 
 @Component({
   selector: 'app-users-list',
   standalone: true,
-  imports: [
-    NgFor,
-    UserCardComponent,
-    AsyncPipe,
-    MatButtonModule,
-  ],
+  imports: [NgFor, UserCardComponent, AsyncPipe, MatButtonModule],
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,14 +21,13 @@ export class UsersListComponent {
   readonly usersApiService = inject(UsersApiSevice);
   readonly usersService = inject(UsersService);
   readonly dialog = inject(MatDialog);
-  private snackBar = inject(MatSnackBar)
+  private snackBar = inject(MatSnackBar);
+  public users$ = this.usersService.usersSubject$.asObservable();
 
   constructor() {
     this.usersApiService.getUsers().subscribe((res: User[]) => {
       this.usersService.setUsers(res);
     });
-
-    this.usersService.users$.subscribe((user) => console.log(user));
   }
 
   openDialog(): void {
@@ -49,17 +43,17 @@ export class UsersListComponent {
             name: createResult.companyName,
           },
           website: createResult.website,
+          phone: createResult.phone,
         });
         this.snackBar.open('Пользователь успешно создан!', 'Ок', {
-          duration: 3000
-        })
-      }else {
+          duration: 3000,
+        });
+      } else {
         this.snackBar.open('Ошибка! пользователь не создан', 'Ок', {
-          duration: 3000
-        })
+          duration: 3000,
+        });
       }
     });
-    
   }
 
   deleteUser(id: number) {
@@ -67,6 +61,7 @@ export class UsersListComponent {
   }
 
   editUser(user: any) {
+    
     this.usersService.editUser({
       ...user,
       company: {

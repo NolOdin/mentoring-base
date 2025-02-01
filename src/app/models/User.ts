@@ -13,7 +13,7 @@ export interface User {
         lng: string;
       };
     };
-    phone?: string;
+    phone: string;
     website: string;
     company: {
       name: string;

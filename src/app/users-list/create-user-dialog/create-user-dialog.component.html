@@ -63,6 +63,26 @@ style="display: flex; flex-direction: column; padding: 50px;"
   </div>
 </mat-form-field>
 <mat-form-field class="example-full-width form-input">
+  <mat-label>Phone:</mat-label>
+  <input
+    type="text"
+    matInput
+    formControlName="phone"
+    placeholder="Заголовок задачи"
+  />
+  <div
+    class="alert"
+    *ngIf="
+      form.controls['phone'].invalid &&
+      (form.controls['phone'].dirty || form.controls['phone'].touched)
+    "
+  >
+    <mat-error *ngIf="form.controls['phone'].errors"
+      >Номер введен некорректно!</mat-error
+    >
+  </div>
+</mat-form-field>
+<mat-form-field class="example-full-width form-input">
   <mat-label>Company name:</mat-label>
   <input
     type="text"

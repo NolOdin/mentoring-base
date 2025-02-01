@@ -1,5 +1,5 @@
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { YelBackgroundDirective } from './directives/yel-background.directive';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,76 +7,72 @@ import { AuthComponent } from './auth/auth.component';
 import { UserService } from './services/user.service';
 
 
-const navNamingFunc = (name: string) => {
-  return name
-}
-
- const headerValue2 = navNamingFunc("О компании");
-
- 
-
- //const menuItems = ['Каталог','Стройматериалы', 'Инструменты','Электрика', 'Интерьер и одежда']
- 
-
-
- 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor, RouterLink, YelBackgroundDirective, AsyncPipe, NgIf],
+  imports: [
+    RouterOutlet,
+    NgFor,
+    RouterLink,
+    YelBackgroundDirective,
+    AsyncPipe,
+    NgIf,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
-
-
 export class AppComponent {
   title = 'mentoring-first-project';
-  
- public readonly dialog = inject(MatDialog);
-  public readonly userServ = inject(UserService)
 
- public openAuthDialog(): void {
+  public readonly dialog = inject(MatDialog);
+  public readonly userServ = inject(UserService);
+
+  public openAuthDialog(): void {
     const dialogRef = this.dialog.open(AuthComponent, {});
 
     dialogRef.afterClosed().subscribe((res: string) => {
-      //console.log(res)
-      if(res === 'admin') {
-        this.userServ.loginAsAdmin()
+      if (res === 'admin') {
+        this.userServ.loginAsAdmin();
       } else if (res === 'user') {
-        this.userServ.loginAsUser()
+        this.userServ.loginAsUser();
       } else {
-        return undefined
+        return undefined;
       }
     });
   }
-  public logout () {
-    if(confirm('Вы точно хотите выйти ?')) {
-      return this.userServ.logout()
-    }else {
-      return false
+  public logout() {
+    if (confirm('Вы точно хотите выйти ?')) {
+      return this.userServ.logout();
+    } else {
+      return false;
     }
   }
-  
 
   isUpperCase = true;
 
-  menuItems = ['Каталог','Стройматериалы', 'Инструменты','Электрика', 'Интерьер и одежда']
+  menuItems = [
+    'Каталог',
+    'Стройматериалы',
+    'Инструменты',
+    'Электрика',
+    'Интерьер и одежда',
+  ];
 
   upperCaseVal = this.menuItems.map((e) => {
-    return e.toUpperCase()
-  })
-  
-  changeMenuText () {
-    this.menuItems = this.upperCaseVal.map(
-      e => this.isUpperCase ? e.toUpperCase() : e.toLowerCase()
-    )
+    return e.toUpperCase();
+  });
 
-    this.isUpperCase = !this.isUpperCase
+  changeMenuText() {
+    this.menuItems = this.upperCaseVal.map((e) =>
+      this.isUpperCase ? e.toUpperCase() : e.toLowerCase()
+    );
+
+    this.isUpperCase = !this.isUpperCase;
   }
 
   headerItem1 = 'Главная';
-  aboutCompany = headerValue2
+  aboutCompany = 'О компании';
   headerItem3 = 'Каталог';
   headerItem4 = 'Пользователи';
   headerItem5 = 'Тудушки';
@@ -86,7 +82,4 @@ export class AppComponent {
   secondHeaderItem2 = 'Инструменты';
   secondHeaderItem3 = 'Электрика';
   secondHeaderItem4 = 'Интерьер и одежда';
-
-
-  
 }

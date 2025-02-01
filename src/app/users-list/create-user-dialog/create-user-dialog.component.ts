@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
 import { User } from '../../models/User';
@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   templateUrl: './create-user-dialog.component.html',
   styleUrl: './create-user-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateUserDialogComponent {
 
@@ -38,6 +39,10 @@ export class CreateUserDialogComponent {
       Validators.minLength(3),
     ]),
     companyName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    phone: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
     ]),

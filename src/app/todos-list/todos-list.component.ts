@@ -19,6 +19,7 @@ export class TodosListComponent {
 
   readonly todosApiService = inject(TodosApiService)
   readonly todosService = inject(TodosService)
+  public todos$ = this.todosService.todosSubject$.asObservable()
   
   constructor () {
    this.todosApiService.getTodos().subscribe((res: Todo[]) => {
@@ -29,7 +30,7 @@ export class TodosListComponent {
   deleteTodos(id: number) {
     this.todosService.deleteTodo(id)
   }
-  public createTodo(formData: any) {
+  public createTodo(formData: Todo) {
     console.log("hello create todo")
     this.todosService.createTodo({
       id: new Date().getTime(),

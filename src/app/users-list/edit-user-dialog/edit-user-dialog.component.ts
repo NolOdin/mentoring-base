@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -30,6 +30,7 @@ import { User } from '../../models/User';
   ],
   templateUrl: './edit-user-dialog.component.html',
   styleUrl: './edit-user-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditUserDialogComponent {
  
@@ -50,6 +51,10 @@ export class EditUserDialogComponent {
       Validators.minLength(3),
     ]),
     companyName: new FormControl(this.data.user.company.name, [
+      Validators.required,
+      Validators.minLength(2),
+    ]),
+    phone: new FormControl(this.data.user.phone, [
       Validators.required,
       Validators.minLength(2),
     ]),

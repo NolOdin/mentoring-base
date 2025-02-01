@@ -1,96 +1,116 @@
 <form
-style="display: flex; flex-direction: column; padding: 50px;"
-[formGroup]="form"
+  style="display: flex; flex-direction: column; padding: 50px"
+  [formGroup]="form"
 >
-<mat-form-field class="example-full-width form-input">
-  <mat-label>Name:</mat-label>
-  <input
-    type="text"
-    matInput
-    formControlName="name"
-    placeholder="Заголовок задачи"
-  />
-  <div
-    class="alert"
-    *ngIf="
-      form.controls['name'].invalid &&
-      (form.controls['name'].dirty || form.controls['name'].touched)
-    "
-  >
-    <mat-error *ngIf="form.controls['name'].errors"
-      >Имя введено некорректно!</mat-error
+  <mat-form-field class="example-full-width form-input">
+    <mat-label>Name:</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="name"
+      placeholder="Заголовок задачи"
+    />
+    <div
+      class="alert"
+      *ngIf="
+        form.controls['name'].invalid &&
+        (form.controls['name'].dirty || form.controls['name'].touched)
+      "
     >
-  </div>
-</mat-form-field>
-<mat-form-field class="example-full-width form-input">
-  <mat-label>Email:</mat-label>
-  <input
-    type="text"
-    matInput
-    formControlName="email"
-    placeholder="Заголовок задачи"
-  />
-  <div
-    class="alert"
-    *ngIf="
-      form.controls['email'].invalid &&
-      (form.controls['email'].dirty || form.controls['email'].touched)
-    "
-  >
-    <mat-error *ngIf="form.controls['email'].errors"
-      >Email введен некорректно!</mat-error
+      <mat-error *ngIf="form.controls['name'].errors"
+        >Имя введено некорректно!</mat-error
+      >
+    </div>
+  </mat-form-field>
+  <mat-form-field class="example-full-width form-input">
+    <mat-label>Email:</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="email"
+      placeholder="Заголовок задачи"
+    />
+    <div
+      class="alert"
+      *ngIf="
+        form.controls['email'].invalid &&
+        (form.controls['email'].dirty || form.controls['email'].touched)
+      "
     >
-  </div>
-</mat-form-field>
-<mat-form-field class="example-full-width form-input">
-  <mat-label>Website:</mat-label>
-  <input
-    type="text"
-    matInput
-    formControlName="website"
-    placeholder="Заголовок задачи"
-  />
-  <div
-    class="alert"
-    *ngIf="
-      form.controls['website'].invalid &&
-      (form.controls['website'].dirty || form.controls['website'].touched)
-    "
-  >
-    <mat-error *ngIf="form.controls['website'].errors"
-      >Имя введено некорректно!</mat-error
+      <mat-error *ngIf="form.controls['email'].errors"
+        >Email введен некорректно!</mat-error
+      >
+    </div>
+  </mat-form-field>
+  <mat-form-field class="example-full-width form-input">
+    <mat-label>Website:</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="website"
+      placeholder="Заголовок задачи"
+    />
+    <div
+      class="alert"
+      *ngIf="
+        form.controls['website'].invalid &&
+        (form.controls['website'].dirty || form.controls['website'].touched)
+      "
     >
-  </div>
-</mat-form-field>
-<mat-form-field class="example-full-width form-input">
-  <mat-label>Company name:</mat-label>
-  <input
-    type="text"
-    matInput
-    formControlName="companyName"
-    placeholder="Заголовок задачи"
-  />
-  <div
-    class="alert"
-    *ngIf="
-      form.controls['companyName'].invalid &&
-      (form.controls['companyName'].dirty ||
-        form.controls['companyName'].touched)
-    "
-  >
-    <mat-error *ngIf="form.controls['companyName'].errors"
-      >Имя введено некорректно!</mat-error
+      <mat-error *ngIf="form.controls['website'].errors"
+        >Веб сайт введен некорректно!</mat-error
+      >
+    </div>
+  </mat-form-field>
+  <mat-form-field class="example-full-width form-input">
+    <mat-label>Phone:</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="phone"
+      placeholder="Заголовок задачи"
+    />
+    <div
+      class="alert"
+      *ngIf="
+        form.controls['phone'].invalid &&
+        (form.controls['phone'].dirty || form.controls['phone'].touched)
+      "
     >
-  </div>
-</mat-form-field>
-<button
-  mat-raised-button
-  style="width: 150px; margin-top: 20px"
-  type="submit"
-  color="primary"
-  [disabled]="form.invalid"
-  [mat-dialog-close]="userWithUpdateFields"
->
-  СОХРАНИТЬ
-</button>
+      <mat-error *ngIf="form.controls['phone'].errors"
+        >Номер введен некорректно!</mat-error
+      >
+    </div>
+  </mat-form-field>
+  <mat-form-field class="example-full-width form-input">
+    <mat-label>Company name:</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="companyName"
+      placeholder="Заголовок задачи"
+    />
+    <div
+      class="alert"
+      *ngIf="
+        form.controls['companyName'].invalid &&
+        (form.controls['companyName'].dirty ||
+          form.controls['companyName'].touched)
+      "
+    >
+      <mat-error *ngIf="form.controls['companyName'].errors"
+        >Имя компании введено некорректно!</mat-error
+      >
+    </div>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    style="width: 150px; margin-top: 20px"
+    type="submit"
+    color="primary"
+    [disabled]="form.invalid"
+    [mat-dialog-close]="userWithUpdateFields"
+  >
+    СОХРАНИТЬ
+  </button>
 </form>

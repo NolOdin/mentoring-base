@@ -1,6 +1,6 @@
 <button mat-raised-button  color="primary" style="margin: 20px;" (click)="openDialog()" >Создать Пользователя</button>
 <div class="user-card-block">
-    <div *ngFor="let user of usersService.users$ | async" >
+    <div *ngFor="let user of users$ | async" >
        
        <app-user-card [user]="user" (deleteUser)="deleteUser($event)" (eidtUser)="editUser($event)" ></app-user-card>
 

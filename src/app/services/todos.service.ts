@@ -3,18 +3,18 @@ import { BehaviorSubject } from 'rxjs';
 import { Todo } from '../models/Todo';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodosService {
+  todosSubject$ = new BehaviorSubject<Todo[]>([]);
+  todos$ = this.todosSubject$.asObservable();
 
-  private todosSubject$ = new BehaviorSubject<Todo[]>([])
-  todos$ = this.todosSubject$.asObservable()
-
-  constructor() { }
+  constructor() {}
 
   setTodos(todos: Todo[]) {
-    this.todosSubject$.next(todos)
+    this.todosSubject$.next(todos);
   }
+
   editTodo(editedTodo: Todo) {
     this.todosSubject$.next(
       this.todosSubject$.value.map((user) => {
@@ -26,11 +26,12 @@ export class TodosService {
       })
     );
   }
+
   createTodo(todo: Todo) {
-   this.todosSubject$.next([...this.todosSubject$.value, todo ])
+    this.todosSubject$.next([...this.todosSubject$.value, todo]);
   }
 
-  deleteTodo (id: number) {
+  deleteTodo(id: number) {
     this.todosSubject$.next(
       this.todosSubject$.value.filter((item) => {
         if (id == item.id) {
@@ -39,6 +40,6 @@ export class TodosService {
           return true;
         }
       })
-    )
+    );
   }
 }

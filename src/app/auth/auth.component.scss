@@ -1,15 +1,15 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
 }
 
 .buttons-wrapper {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 button {
-    width: 150px;
+  width: 150px;
 }

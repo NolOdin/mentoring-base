@@ -3,16 +3,15 @@ import { inject, Injectable } from '@angular/core';
 import { Todo } from '../models/Todo';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-
 export class TodosApiService {
-
-  constructor() { }
-  readonly apiService = inject(HttpClient)
+  constructor() {}
+  readonly apiService = inject(HttpClient);
 
   getTodos() {
-      return this.apiService.get<Array<Todo>>('https://jsonplaceholder.typicode.com/todos')
+    return this.apiService.get<Array<Todo>>(
+      'https://jsonplaceholder.typicode.com/todos'
+    );
   }
 }

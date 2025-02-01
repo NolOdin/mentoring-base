@@ -6,8 +6,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class UsersService {
-  private usersSubject$ = new BehaviorSubject<User[]>([]);
-  users$ = this.usersSubject$.asObservable()
+  usersSubject$ = new BehaviorSubject<User[]>([]);
+  users$ = this.usersSubject$.asObservable();
 
   constructor() {}
 
@@ -28,19 +28,17 @@ export class UsersService {
   }
 
   createUser(user: User) {
-    
     const existingUser = this.usersSubject$.value.find(
       (currentEl) => currentEl.email == user.email
-    )
-    if(existingUser) {
-      alert('Такой email уже существует!')
-    }else {
+    );
+    if (existingUser) {
+      alert('Такой email уже существует!');
+    } else {
       this.usersSubject$.next([...this.usersSubject$.value, user]);
     }
   }
 
-  deleteUser(id: number) { 
-
+  deleteUser(id: number) {
     this.usersSubject$.next(
       this.usersSubject$.value.filter((item) => {
         if (id == item.id) {
@@ -49,6 +47,6 @@ export class UsersService {
           return true;
         }
       })
-    )
+    );
   }
 }

@@ -3,14 +3,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'setDate',
-  standalone: true
+  standalone: true,
 })
 export class SetDatePipe implements PipeTransform {
-
   constructor(private datePipe: DatePipe) {}
 
-  transform(value: any, args?: any): any {
-    
+  transform(value: Date, args?: string): string | null {
     return this.datePipe.transform(value, 'medium');
   }
 }

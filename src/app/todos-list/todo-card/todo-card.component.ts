@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { LimitTextPipe } from '../../pipes/limit-text.pipe';
 import { SetDatePipe } from '../../pipes/set-date.pipe';
 import { DatePipe } from '@angular/common';
+import { Todo } from '../../models/Todo';
 
 @Component({
   selector: 'app-todo-card',
@@ -9,11 +10,11 @@ import { DatePipe } from '@angular/common';
   imports: [LimitTextPipe, SetDatePipe ],
   providers: [DatePipe],
   templateUrl: './todo-card.component.html',
-  styleUrl: './todo-card.component.scss'
+  styleUrl: './todo-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoCardComponent {
-  @Input()
-  todo: any;
+  @Input() todo: Todo;
   @Output()
 
   deleteTodo = new EventEmitter()
