@@ -37,6 +37,7 @@ export class UserCardComponent {
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
       data: { user: this.user },
     });
+    
 
     dialogRef.afterClosed().subscribe((editResult) => {
       if (editResult) {

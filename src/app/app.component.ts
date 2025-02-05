@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthComponent } from './auth/auth.component';
 import { UserService } from './services/user.service';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,

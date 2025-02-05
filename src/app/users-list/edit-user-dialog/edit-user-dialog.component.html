@@ -82,23 +82,23 @@
       >
     </div>
   </mat-form-field>
-  <mat-form-field class="example-full-width form-input">
+  <mat-form-field class="example-full-width form-input" formGroupName="company">
     <mat-label>Company name:</mat-label>
     <input
       type="text"
       matInput
-      formControlName="companyName"
+      formControlName="name"
       placeholder="Заголовок задачи"
     />
     <div
       class="alert"
       *ngIf="
-        form.controls['companyName'].invalid &&
-        (form.controls['companyName'].dirty ||
-          form.controls['companyName'].touched)
+        form.controls['name'].invalid &&
+        (form.controls['name'].dirty ||
+          form.controls['name'].touched)
       "
     >
-      <mat-error *ngIf="form.controls['companyName'].errors"
+      <mat-error *ngIf="form.controls['name'].errors"
         >Имя компании введено некорректно!</mat-error
       >
     </div>

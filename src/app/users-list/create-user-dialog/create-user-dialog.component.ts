@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
-import { User } from '../../models/User';
+import { MatDialogClose } from '@angular/material/dialog';
 import { NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
@@ -38,10 +37,9 @@ export class CreateUserDialogComponent {
       Validators.required,
       Validators.minLength(3),
     ]),
-    companyName: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-    ]),
+    company: new FormGroup({
+      name: new FormControl('', [Validators.required]),
+    }),
     phone: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
